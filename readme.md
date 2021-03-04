@@ -15,7 +15,7 @@ Make sure you have Nvidia Isaac (2020.2) set up. Clone the repo in the `sdk/apps
 ## Run
 
 ### Using V4L2 Camera
-To run the application using a V4L2 camera, attach the camera and note its device id. Edit the device id under the `config` section of `graphs/edge_detection.app.json` file. Then, in the `sdk` directory, run:
+To run the application using a V4L2 camera, attach the camera and note its device id. Edit the `device_id` under the `config` section of [`graphs/edge_detection.app.json`](https://github.com/firekind/isaac_edge_detection/blob/master/graphs/edge_detection.app.json#L81) file. Then, in the `sdk` directory, run:
 
 ```
 ~/isaac/sdk$ bazel run //apps/isaac_edge_detection:edge_detection
