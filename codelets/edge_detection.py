@@ -13,7 +13,7 @@ class EdgeDetector(Codelet):
         # defining output
         self.output_image = self.isaac_proto_tx("ImageProto", "output_image")
 
-        # setting codelet to tick when input occurs
+        # setting codelet to tick when input appears
         self.tick_on_message(self.input_image)
 
     def tick(self):
@@ -52,10 +52,10 @@ class EdgeDetector(Codelet):
         tx_builder.proto.channels = 1
         tx_builder.proto.dataBufferIndex = 0
 
-        # setting the resultant image as output
+        ## setting the resultant image as output
         tx_builder.buffers = [res_image]
 
-        # setting acquisition time
+        ## setting acquisition time
         tx_builder.acqtime = self.input_image.message.acqtime
 
         # sending the output
