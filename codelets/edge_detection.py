@@ -19,7 +19,7 @@ class EdgeDetector(Codelet):
     def tick(self):
         # getting the input
         image_tensor = self.input_image.message.tensor
-        
+
         # Performing edge detection:
         ## applying gaussian blur
         blurred = cv2.GaussianBlur(
@@ -44,7 +44,7 @@ class EdgeDetector(Codelet):
         # Setting output of codelet
         ## initializing the output
         tx_builder = self.output_image.init()
-        
+
         ## setting ImageProto properties (have a look at messages/image.capnp in the sdk)
         tx_builder.proto.elementType = "uint8"
         tx_builder.proto.rows = res_image.shape[0]

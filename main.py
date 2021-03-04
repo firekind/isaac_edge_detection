@@ -19,8 +19,13 @@ def main():
     else:
         app_file = "apps/isaac_edge_detection/graphs/edge_detection.app.json"
 
+    # creating app
     app = Application(app_filename=app_file)
+
+    # adding EdgeDetector codelet to the detector component of the edge_detector node
     app.nodes["edge_detector"].add(EdgeDetector, "detector")
+
+    # running the application
     app.run()
 
 
