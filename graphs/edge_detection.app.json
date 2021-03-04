@@ -1,0 +1,127 @@
+{
+    "name": "edge_detection",
+    "modules": [
+        "sight",
+        "viewers",
+        "sensors:v4l2_camera"
+    ],
+    "graph": {
+        "nodes": [
+            {
+                "name": "camera",
+                "components": [
+                    {
+                        "name": "ledger",
+                        "type": "isaac::alice::MessageLedger"
+                    },
+                    {
+                        "name": "v4l2_camera",
+                        "type": "isaac::V4L2Camera"
+                    }
+                ]
+            },
+            {
+                "name": "edge_detector",
+                "components": [
+                    {
+                        "name": "ledger",
+                        "type": "isaac::alice::MessageLedger"
+                    },
+                    {
+                        "name": "detector",
+                        "type": "isaac::alice::PyCodelet"
+                    }
+                ]
+            },
+            {
+                "name": "detection_viewer",
+                "components": [
+                    {
+                        "name": "ledger",
+                        "type": "isaac::alice::MessageLedger"
+                    },
+                    {
+                        "name": "viewer",
+                        "type": "isaac::viewers::ImageViewer"
+                    }
+                ]
+            },
+            {
+                "name": "scene_viewer",
+                "components": [
+                    {
+                        "name": "ledger",
+                        "type": "isaac::alice::MessageLedger"
+                    },
+                    {
+                        "name": "viewer",
+                        "type": "isaac::viewers::ImageViewer"
+                    }
+                ]
+            }
+        ],
+        "edges": [
+            {
+                "source": "camera/v4l2_camera/frame",
+                "target": "edge_detector/detector/input_image"
+            },
+            {
+                "source": "edge_detector/detector/output_image",
+                "target": "detection_viewer/viewer/image"
+            },
+            {
+                "source": "camera/v4l2_camera/frame",
+                "target": "scene_viewer/viewer/image"
+            }
+        ]
+    },
+    "config": {
+        "camera": {
+            "v4l2_camera": {
+                "device_id": 2,
+                "rows": 480,
+                "cols": 640,
+                "rate_hz": 30
+            }
+        },
+        "detection_viewer": {
+            "viewer": {
+                "target_fps": 20,
+                "reduce_scale": 4
+            }
+        },
+        "websight": {
+            "WebsightServer": {
+                "port": 3000,
+                "ui_config": {
+                    "windows": {
+                        "Edge Detection": {
+                            "renderer": "2d",
+                            "dims": {
+                                "width": 640,
+                                "height": 480
+                            },
+                            "channels": [
+                                {
+                                    "name": "edge_detection/detection_viewer/viewer/image"
+                                }
+                            ]
+                        },
+                        "Scene": {
+                            "renderer": "2d",
+                            "dims": {
+                                "width": 640,
+                                "height": 480
+                            },
+                            "channels": [
+                                {
+                                    "name": "edge_detection/scene_viewer/viewer/image"
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
