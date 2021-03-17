@@ -1,8 +1,8 @@
 {
     "name": "edge-detection",
-    "image": "firekind/isaac:2020.2-deepstream-5.0.1-base",
+    "image": "firekind/isaac:2020.2-deepstream-5.0.1-devel",
     "runArgs": [
-        "--runtime=nvidia",
+        "--gpus=all",
         "--device=/dev/video2",
         "--net=host"
     ],
