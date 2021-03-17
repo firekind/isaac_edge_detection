@@ -1,0 +1,16 @@
+{
+    "name": "edge-detection",
+    "image": "firekind/isaac:2020.2-deepstream-5.0.1-base",
+    "runArgs": [
+        "--runtime=nvidia",
+        "--device=/dev/video2",
+        "--net=host"
+    ],
+    "mounts": [
+        "source=isaac-sdk-build-cache,target=/root"
+    ],
+    "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+    ]
+}

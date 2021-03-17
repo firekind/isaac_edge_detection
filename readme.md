@@ -6,19 +6,19 @@ As it says on the tin.
 
 ## Setup
 
-Make sure you have Nvidia Isaac (2020.2) set up. Clone the repo in the `sdk/apps` directory
+Pull the docker image [`firekind/isaac:2020.2`](https://hub.docker.com/repository/docker/firekind/isaac) and start a container using:
 
 ```
-~/isaac/sdk/apps$ git clone https://github.com/firekind/isaac_edge_detection
+$ $ docker run --mount source=isaac-sdk-build-cache,target=/root -v <path to project directory>:/workspace -w /workspace --runtime=nvidia --device <path to camera, if used. eg: /dev/video2> -it firekind/isaac:2020.2 /bin/bash
 ```
 
 ## Run
 
 ### Using V4L2 Camera
-To run the application using a V4L2 camera, attach the camera and note its device id. Edit the `device_id` under the `config` section of [`graphs/edge_detection.app.json`](https://github.com/firekind/isaac_edge_detection/blob/master/graphs/edge_detection.app.json#L81) file. Then, in the `sdk` directory, run:
+To run the application using a V4L2 camera, attach the camera and note its device id. Edit the `device_id` under the `config` section of [`graphs/edge_detection.app.json`](https://github.com/firekind/isaac_edge_detection/blob/master/graphs/edge_detection.app.json#L81) file. Then, run:
 
 ```
-~/isaac/sdk$ bazel run //apps/isaac_edge_detection:edge_detection
+$ bazel run //app:edge_detection
 ```
 
 and open `localhost:3000` on the browser to see the results.
@@ -34,7 +34,7 @@ Make sure Isaac Sim (Unity 3d) is downloaded, and a scene from isaac sim is runn
 And then run the application using:
 
 ```
-~/isaac/sdk$ bazel run //apps/isaac_edge_detection:edge_detection -- --simulate
+$ bazel run //app:edge_detection -- --simulate
 ```
 
 and open `localhost:3000` on the browser to see the results.

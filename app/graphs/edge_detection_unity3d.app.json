@@ -1,14 +1,14 @@
 {
     "name": "edge_detection_unity3d",
     "modules": [
-        "sight",
-        "viewers"
+        "@com_nvidia_isaac_sdk//packages/sight",
+        "@com_nvidia_isaac_sdk//packages/viewers"
     ],
     "graph": {
         "nodes": [
             {
                 "name": "simulation",
-                "subgraph": "packages/navsim/apps/navsim_navigation.subgraph.json"
+                "subgraph": "@com_nvidia_isaac_sdk//packages/navsim/apps/navsim_navigation.subgraph.json"
             },
             {
                 "name": "edge_detector",
@@ -68,8 +68,7 @@
     "config": {
         "detection_viewer": {
             "viewer": {
-                "target_fps": 20,
-                "reduce_scale": 4
+                "target_fps": 20
             }
         },
         "websight": {
