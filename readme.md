@@ -9,7 +9,7 @@ As it says on the tin.
 Pull the docker image [`firekind/isaac:2020.2`](https://hub.docker.com/repository/docker/firekind/isaac) and start a container using:
 
 ```
-$ $ docker run --mount source=isaac-sdk-build-cache,target=/root -v <path to project directory>:/workspace -w /workspace --runtime=nvidia --device <path to camera, if used. eg: /dev/video2> -it firekind/isaac:2020.2 /bin/bash
+$ docker run --mount source=isaac-sdk-build-cache,target=/root -v <path to project directory>:/workspace -w /workspace --runtime=nvidia --device <path to camera, if used. eg: /dev/video2> -it firekind/isaac:2020.2 /bin/bash
 ```
 
 ## Run
