@@ -15,7 +15,7 @@ $ $ docker run --mount source=isaac-sdk-build-cache,target=/root -v <path to pro
 ## Run
 
 ### Using V4L2 Camera
-To run the application using a V4L2 camera, attach the camera and note its device id. Edit the `device_id` under the `config` section of [`graphs/edge_detection.app.json`](https://github.com/firekind/isaac_edge_detection/blob/master/graphs/edge_detection.app.json#L81) file. Then, run:
+To run the application using a V4L2 camera, attach the camera and note its device id. Edit the `device_id` under the `config` section of [`app/graphs/edge_detection.app.json`](https://github.com/firekind/isaac_edge_detection/blob/master/app/graphs/edge_detection.app.json#L81) file. Then, run:
 
 ```
 $ bazel run //app:edge_detection
